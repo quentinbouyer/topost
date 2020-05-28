@@ -1,7 +1,8 @@
 ## topost
-topost display client for all ost on a lustre oss and sort them by bandwith usage<br>
+topost display client for all ost on a lustre oss and sort them by read, write and iops usage<br>
 It parse /proc/fs/lustre .... and read stats 2 times , calculate the bandwith used by each client, sort the client by usage<br>
 and print them.<br>
+It has been tested on redhat 7.4 and lustre 2.7<br>
 It use /etc/topost.conf to convert nid to hostname.<br>
 /etc/topost.conf must contain each lustre client and begin with word client.<br>
 Example :
