@@ -1,0 +1,19 @@
+.TH topost.conf 1 "version 1.1"
+.SH NAME
+topost.conf \- File configuration for topost
+.SH DESCRIPTION
+.nf
+This file is needed by topost.
+Allow topost to resolve nid to hostname
+Contain key word client= , name of the client and nids of the client , separate by a comma.
+client=name_of_the_client,nid_of_the_client
+.fi
+.SH FILES
+/etc/topost.conf
+.SH EXAMPLES
+.nf
+client=pangea10,215@ptlf
+client=venus5,192.168.0.1@o2ib0
+.fi
+.SH AUTHOR
+Quentin Bouyer quentin.bouyer@gmail.com
