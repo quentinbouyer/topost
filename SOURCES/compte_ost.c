@@ -26,22 +26,24 @@ void compte_ost ()
 
  if(NULL==(rep=opendir("/proc/fs/lustre/obdfilter")))
  {
-  fprintf(stderr,"Impossible de trouver /proc/fs/lustre/obdfilter\n");
-  exit(EXIT_FAILURE);
+  	fprintf (stderr, "Impossible de trouver /proc/fs/lustre/obdfilter\n");
+  	exit ( EXIT_FAILURE );
  }
  while ((fichierlu = readdir (rep)))
  {
-  if(fichierlu->d_name && strcmp(fichierlu->d_name,".") && strcmp(fichierlu->d_name,".."))
-  {
-   sprintf(path_complet,"/proc/fs/lustre/obdfilter/%s",fichierlu->d_name);
-   if (stat (path_complet, &buf))
-   {
-	fprintf (stderr, "Probleme avec stat()\n");
-	exit (EXIT_FAILURE);
-   }
-   if (S_ISDIR (buf.st_mode)) numost++; 
-   memset(&path_complet[0],0,sizeof(path_complet));
-  }
+  	if(fichierlu->d_name && strcmp(fichierlu->d_name,".") && strcmp(fichierlu->d_name,".."))
+  	{
+   		sprintf(path_complet,"/proc/fs/lustre/obdfilter/%s",fichierlu->d_name);
+   		if (stat (path_complet, &buf))
+   		{
+			fprintf (stderr, "Probleme avec stat()\n");
+			exit ( EXIT_FAILURE );
+   		}
+   		if (S_ISDIR (buf.st_mode)) 
+			numost++; 
+
+   		memset(&path_complet[0],0,sizeof(path_complet));
+  	}
  }
  closedir (rep);
 }

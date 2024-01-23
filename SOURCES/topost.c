@@ -10,11 +10,12 @@
 #include <glib.h>
 
 #include "topost.h"
-#include "traite_arg.h"
+#include "parse_arg.h"
 #include "compte_ost.h"
-#include "read_conf_file.h"
 #include "li_stat.h"
 #include "affiche_oss.h"
+#include "compte_nid.h"
+#include "rempli_structure.h"
 
 #define TAILLE_BLOC 1024
 
@@ -38,9 +39,6 @@ io_ost *iost;
 // provisoire
 clitemp *nomip;
 
-// pour traiter les arguments
-//config_arg *argument_cmd;
-
 time_t t;
 
 // FIN GLOBAL VAR
@@ -62,7 +60,7 @@ long temp=0;
 char servic[20];
 
 // pour la fonction split_chaine
-char **resultat_split;
+// char **resultat_split;
 
 //pour lire les fichier /proc/fs/lustre/devices
 char c1[20]="";
@@ -76,24 +74,24 @@ int main( int argc, char *argv[] )
 	//lecture des arguments
 	parse_args (argc, argv);
 
-	printf ("%d clients max to display\n",nbaffich); 
+	//printf ("%d clients max to display\n",nbaffich); 
 
 	// on cherche le nombre d'ost
 	compte_ost ();
-	printf ("%d ost\n",numost);
+	printf ("%d ost\n", numost);
 
- 	//lit conf file, combien de client
- 	read_conf_file(0);
-	printf ("%d clients in /etc/topost.conf\n",numclient);
+ 	// combien de client
+        compte_nid();
+        printf("%d clients\n", numclient);
 
  	//donnees pour tous les clients de tous les ost
- 	iost=malloc(numost * numclient * sizeof(*iost));
+ 	iost = malloc(numost * numclient * sizeof(*iost));
 
  	//pour stocker provisoirement addip et nom des clients
- 	nomip=malloc(numclient * sizeof(*nomip));
+ 	nomip = malloc(numclient * sizeof(*nomip));
 
- 	//lit conf file, rempli la structure d'un client
- 	read_conf_file(1);
+ 	// rempli la structure d'un client
+	rempli_structure();
 
  	printf("First read\n");
 
@@ -109,5 +107,6 @@ int main( int argc, char *argv[] )
  	li_stat_oss();
 
   	affiche_oss();
+
  	return 0;
 }   

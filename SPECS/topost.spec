@@ -2,7 +2,7 @@
 
 %define name topost
 %define release 0%{?dist}
-%define version 1.1
+%define version 2.1
 %define buildroot %{_topdir}/BUILD/
 
 BuildRoot: %{buildroot}
@@ -29,15 +29,16 @@ mkdir -p $RPM_BUILD_ROOT/etc;
 mkdir -p $RPM_BUILD_ROOT/usr/share/man/man1;
 cd %{_sourcedir};
 cp topost $RPM_BUILD_ROOT/usr/bin;
-cp topost.conf $RPM_BUILD_ROOT/etc;
 cp topost.1 $RPM_BUILD_ROOT/usr/share/man/man1;
-cp topost.conf.1 $RPM_BUILD_ROOT/usr/share/man/man1;
 %clean
 rm -rf RPM_BUILD_ROOT/
 %files
 %attr(755,root,root)
 /usr/bin/topost
 /usr/share/man/man1/topost.1.gz
-/usr/share/man/man1/topost.conf.1.gz
-/etc/topost.conf
 %dir
+%changelog
+* Tue Jan 16 2024 quentin.bouyer@gmail.com 2.1
+- count quotactl and punch op
+* Fri Jan 12 2024 quentin.bouyer@gmail.com 2.0
+- no need topost.conf

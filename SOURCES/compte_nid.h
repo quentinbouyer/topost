@@ -1,0 +1,1 @@
+void compte_nid();

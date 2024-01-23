@@ -6,9 +6,13 @@ typedef struct
  char nomhost[16];
  unsigned long read;
  unsigned long write;
+ unsigned long quotactl;
+ unsigned long punch;
  unsigned long iops_lu;
  unsigned long ior;
  unsigned long iow;
+ unsigned long io_quota;
+ unsigned long count_punch;
  unsigned long iops_calcul;
 } io_ost;
 
