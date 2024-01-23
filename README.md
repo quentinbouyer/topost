@@ -1,13 +1,6 @@
 ## topost
-topost display lustre client and sort them by Read MB/s, Write MB/s and IOPS<br>
-It use /etc/topost.conf to convert nid to hostname.<br>
-/etc/topost.conf must contain each lustre client with it nid.<br>
-Example :
-<pre>
-[root@oss0 ~]# cat /etc/topost.conf
-client=pangea01,123.45.31.2@o2ib1
-client=pangea02,123.45.31.3@o2ib1
-....
+topost display lustre client and sort them by Read MB/s, Write MB/s IOPS quotactl and punch operations<br>
+
 </pre>
 
 output example :
